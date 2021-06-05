@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
             render json: comment, include: [:user]
         else
             render json: comment.errors.full_messages
+        end
     end
 
     def destroy
@@ -18,5 +19,5 @@ class CommentsController < ApplicationController
         comment.delete
         render json: {commentId = comment.id}
     end
-    
+
 end
