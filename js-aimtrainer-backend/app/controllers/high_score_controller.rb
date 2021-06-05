@@ -11,6 +11,7 @@ class HighScoreController < ApplicationController
             render json: high_score, include: [:user]
         else
             render json: high_score.errors.full_messages
+        end
     end
 
     def update
@@ -20,6 +21,7 @@ class HighScoreController < ApplicationController
             render json: high_score, include: [:user]
         else
             render json: high_score.errors.full_messages
+        end
     end
 
 end
