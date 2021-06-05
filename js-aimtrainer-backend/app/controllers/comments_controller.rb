@@ -18,4 +18,5 @@ class CommentsController < ApplicationController
         comment.delete
         render json: {commentId = comment.id}
     end
+    
 end
