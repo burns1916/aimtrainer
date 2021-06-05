@@ -14,7 +14,12 @@ class HighScoreController < ApplicationController
     end
 
     def update
-
+        high_score = HighScore.find_by_id(params[:id])
+        if high_score
+            high_score.update(high_score: params[:high_score], user_id: params[:user_id])
+            render json: high_score, include: [:user]
+        else
+            render json: high_score.errors.full_messages
     end
 
 end
