@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
     def index
-        comment = Comment.all
+        comments = Comment.all
         render json: comments, include: [:user]
     end
 
