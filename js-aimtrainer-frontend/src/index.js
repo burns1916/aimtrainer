@@ -11,5 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function renderComments(jsonObject) {
-    for (const)
+    for (const comment of jsonObject) {
+        const div = document.getElementById(comments)
+        const commentDiv = document.createElement("div");
+        div.appendChild(commentDiv)
+    }
 }
