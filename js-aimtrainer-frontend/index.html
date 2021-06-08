@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Aim Trainer</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet"type="text/css" href="styles/main.css">
   </head>
   <body>
 <script type="application/javascript" src="src/index.js" charset="UTF-8"></script>
@@ -13,13 +13,22 @@
     </div>
     <div id="user">
         <div id="current_user">
-
+          <p>Not Logged In</p>
         </div>
-        <div id="login">
-
+        <div id="login" class="form">
+          <h4>Login</h4>
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username=login"><br>
+          <button class="button" id="loginButton">Log In</button>
         </div>
-        <div id="signup">
-
+        <div id="signup" class="form">
+          <form id="user-signup">
+            <h4>Sign Up</h4>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username-signup">
+            <br>
+            <button class="button" id="signupButton">Sign Up</button>
+          </form>
         </div>
     </div>
     <div id="game">
