@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
         user = User.find_by(username: params[:username])
         if user
             session[:user_id] = user.id
-            render json: user, only[:username, :id]
+            render json: user, only: [:username, :id]
         else
             render json: { message: "User Not Found" }
         end
@@ -13,5 +13,7 @@ class SessionsController < ApplicationController
     def destroy
         if session[:user_id]
             reset_session
+        end
     end
+
 end

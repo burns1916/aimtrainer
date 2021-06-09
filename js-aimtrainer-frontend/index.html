@@ -6,21 +6,22 @@
     <link rel="stylesheet"type="text/css" href="styles/main.css">
   </head>
   <body>
-<script type="application/javascript" src="src/index.js" charset="UTF-8"></script>
     <div id="title">
         <h1>Aim Trainer</h1>
     </div>
     <div id="application">
       <div id="user-info">
         <div id="user">
-            <div id="current_user">
-              <h4>Not Logged In</h4>
+            <div>
+              <h4 id="current-user">Not Logged In</h4>
             </div>
             <div id="login" class="form">
+              <form id="user-login">
               <h4>Login</h4>
               <label for="username" id="form-label">Username:</label><br>
-              <input type="text" name="username" id="username=login"><br><br>
+              <input type="text" name="username" id="username-login"><br><br>
               <button class="button" id="logInButton">Log In</button>
+              </form>
             </div>
             <div id="signup" class="form">
               <form id="user-signup">
@@ -49,5 +50,6 @@
           <button id="commentButton">Submit</button>
         </form>
       </div>
+      <script defer type="application/javascript" src="src/index.js" charset="UTF-8"></script>
   </body>
 </html>

@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   end
   resources :comments
   resources :high_scores
+
+  post '/login', to: 'sessions#create'
+
+  get '/logout', to: 'sessions#destroy'
 end

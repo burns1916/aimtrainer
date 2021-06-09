@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:3000/"
+const BASE_URL = "http://127.0.0.1:3000"
 const USERS_URL = `${BASE_URL}/users`
 const COMMENTS_URL = `${BASE_URL}/comments`
 const HIGH_SCORE_URL = `${BASE_URL}/high_scores`
@@ -6,36 +6,36 @@ const HIGH_SCORE_URL = `${BASE_URL}/high_scores`
 const signUpButton = document.getElementById("signUpButton");
 const logInButton = document.getElementById("logInButton");
 
-signupButton.addEventListener("click", (e) => {
+signUpButton.addEventListener("click", (e) => {
     signUp(e);
 })
 
-loginButton.addEventListener("click", (e) => {
-    logIn(e)
+logInButton.addEventListener("click", (e) => {
+    logIn(e);
 })
 
 function loggedIn() {
     let player = document.querySelector("#current-user");
 
     if(!(player.innerText === "Not Logged In")) {
-        return true
+        return true;
     }
     else {
-        return false
+        return false;
     }
 }
 
 function logIn(e) {
     e.preventDefault();
 
-    let userInput = document.querySelector("username-login").value;
+    let userInput = document.querySelector("#username-login").value;
 
     let formData = {
         username: userInput
     }
 
     let configObj = {
-        method: "POST"
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -63,10 +63,10 @@ function signUp(e) {
     }
 
     let configObj = {
-        method: "POST"
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Accepts": "application/json"
+            "Accept": "application/json"
         },
         body: JSON.stringify(formData)
     }
@@ -75,8 +75,8 @@ function signUp(e) {
     .then(resp => resp.json())
     .then(parsedResp => {
         if(parsedResp.username) {
-            const currentUser = document.quertSelector("#current-user");
+            const currentUser = document.querySelector("#current-user");
             currentUser.innerText = parsedResp.username;
         }
-    })
+    });
 }
