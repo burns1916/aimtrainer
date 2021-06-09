@@ -3,17 +3,80 @@ const USERS_URL = `${BASE_URL}/users`
 const COMMENTS_URL = `${BASE_URL}/comments`
 const HIGH_SCORE_URL = `${BASE_URL}/high_scores`
 
-document.addEventListener("DOMContentLoaded", () => {
+const signUpButton = document.getElementById("signUpButton");
+const logInButton = document.getElementById("logInButton");
 
-    fetch(COMMENTS_URL)
-    .then(response => response.json())
-    .then(json => renderComments(json));
-});
+signupButton.addEventListener("click", (e) => {
+    signUp(e);
+})
 
-function renderComments(jsonObject) {
-    for (const comment of jsonObject) {
-        const div = document.getElementById(comments)
-        const commentDiv = document.createElement("div");
-        div.appendChild(commentDiv)
+loginButton.addEventListener("click", (e) => {
+    logIn(e)
+})
+
+function loggedIn() {
+    let player = document.querySelector("#current-user");
+
+    if(!(player.innerText === "Not Logged In")) {
+        return true
     }
+    else {
+        return false
+    }
+}
+
+function logIn(e) {
+    e.preventDefault();
+
+    let userInput = document.querySelector("username-login").value;
+
+    let formData = {
+        username: userInput
+    }
+
+    let configObj = {
+        method: "POST"
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }
+
+    fetch(`${BASE_URL}/login`, configObj)
+    .then(resp => resp.json())
+    .then(parsedResp => {
+        if(parsedResp.username) {
+            const currentUser = document.querySelector("#current-user");
+            currentUser.innerText = parsedResp.username;
+        }
+    });
+}
+
+function signUp(e) {
+    e.preventDefault();
+
+    let userInput = document.querySelector("#username-signup").value;
+
+    let formData = {
+        username: userInput
+    }
+
+    let configObj = {
+        method: "POST"
+        headers: {
+            "Content-Type": "application/json",
+            "Accepts": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }
+
+    fetch(`${BASE_URL}/users`, configObj)
+    .then(resp => resp.json())
+    .then(parsedResp => {
+        if(parsedResp.username) {
+            const currentUser = document.quertSelector("#current-user");
+            currentUser.innerText = parsedResp.username;
+        }
+    })
 }
