@@ -7,40 +7,47 @@
   </head>
   <body>
 <script type="application/javascript" src="src/index.js" charset="UTF-8"></script>
-<div id="application">
     <div id="title">
         <h1>Aim Trainer</h1>
     </div>
-    <div id="user">
-        <div id="current_user">
-          <p>Not Logged In</p>
+    <div id="application">
+      <div id="user-info">
+        <div id="user">
+            <div id="current_user">
+              <h4>Not Logged In</h4>
+            </div>
+            <div id="login" class="form">
+              <h4>Login</h4>
+              <label for="username" id="form-label">Username:</label><br>
+              <input type="text" name="username" id="username=login"><br><br>
+              <button class="button" id="loginButton">Log In</button>
+            </div>
+            <div id="signup" class="form">
+              <form id="user-signup">
+                <h4>Sign Up</h4>
+                <label for="username" id="form-label">Username:</label><br>
+                <input type="text" name="username" id="username-signup"><br><br>
+                <button class="button" id="signupButton">Sign Up</button>
+              </form>
+            </div>
         </div>
-        <div id="login" class="form">
-          <h4>Login</h4>
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username=login"><br>
-          <button class="button" id="loginButton">Log In</button>
-        </div>
-        <div id="signup" class="form">
-          <form id="user-signup">
-            <h4>Sign Up</h4>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username-signup">
-            <br>
-            <button class="button" id="signupButton">Sign Up</button>
-          </form>
-        </div>
+      </div>
+      
+      <div id="game">
+        <h4>GAME</h4>
+      </div>
+      
+      <div id="high_scores">
+          <h4>High scores</h4>
+      </div>
     </div>
-    <div id="game">
-
-    </div>
-    <div id="high_scores">
-
-    </div>
-    <div id="comments">
-
-    </div>
-</div>
-
+      <div id="comments" class="form">
+        <h4 id="comment-title">Comments</h4>
+        <form id="comment-form">
+          <label for="comment" id="form-label">New Comment:</label><br>
+          <input type="text" name="new_comment" id="newUserComment"><br><br>
+          <button id="commentButton">Submit</button>
+        </form>
+      </div>
   </body>
 </html>
