@@ -14,6 +14,10 @@ logInButton.addEventListener("click", (e) => {
     logIn(e);
 })
 
+getComments();
+
+
+
 function loggedIn() {
     let player = document.querySelector("#current-user");
 
@@ -79,4 +83,87 @@ function signUp(e) {
             currentUser.innerText = parsedResp.username;
         }
     });
+}
+
+function newComment(user_id) {
+    let commentButton = document.getElementById("newCommentButton");
+
+    commentButton.addEventListener("click", (e) => {
+        let user = document.querySelector("#current-user").innerText;
+
+        e.preventDefault();
+        let commentText = document.getElementById("newUserComment").value
+
+        let formData = {
+            comment: commentText
+        }
+
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+
+        fetch(`${BASE_URL}/users/${user_id}/comments`, configObj)
+        .then(resp => resp.json())
+        .then(parsedResp => {
+            let commentsSection = document.querySelector(".comment-list");
+            let commentDiv = document.createElement("div");
+            commentDiv.classList.add("a-comment");
+            let commentHeader = document.createElement("h5");
+            let commentP = document.createElement("p");
+            commentHeader.innerText = parsedResp.user.username;
+            commentP.innerText = parsedResp.text;
+            commentsSection.appendChild(commentDiv);
+            commentDiv.appendChild(commentHeader);
+            commentDiv.appendChild(commentP);
+            let br = document.createElement("br");
+            commentDiv.appendChild(br);
+        });
+    })
+}
+
+function getComments() {
+    fetch(`${BASE_URL}/comments`)
+    .then(resp => resp.json())
+    .then(parsedResp => {
+        parsedResp.sort((a,b) => a.user.username < b.user.username ? -1: a.user.username === b.user.username ? 0 : 1)
+        parsedResp.forEach( e => {
+            let commentsSection = document.querySelector(".comment-list");
+            let commentDiv = document.createElement("div");
+            commentDiv.classList.add("a-comment");
+            let commentHeader = document.createElement("h5");
+            let commentP = document.createElement("p");
+            let deleteComment = document.createElement('button');
+            deleteComment.classList.add("deleteButton");
+            deleteComment.addEventListener("click", (e) => {
+                e.preventDefault();
+                let commentToDelete = document.getElementById("p").value
+                let formData = {
+                    comment: commentText
+                }
+
+                let configObj = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                }
+            })
+            deleteComment.innerText = "x"
+            commentHeader.innerText = e.user.username;
+            commentP.innerText = e.text;
+            commentsSection.appendChild(commentDiv);
+            commentDiv.appendChild(commentHeader);
+            commentDiv.appendChild(commentP);
+            commentDiv.appendChild(deleteComment);
+            let br = document.createElement("br");
+            commentDiv.appendChild(br);
+        });
+    })
 }
