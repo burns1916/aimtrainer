@@ -55,3 +55,31 @@ h4 {
 #commment-title {
     text-align: center;
 }
+
+.deleteButton {
+ width: 30px;
+ height: 30px;
+ text-align: center;
+ border: 3px solid white ;
+ background: red;
+ color: white;
+ font-size: medium;
+ border-radius: 15px;
+}
+
+.deleteButton:hover {
+    background: black;
+    color: red;
+    border-color: white;
+}
+
+.a-comment {
+    background-color: black;
+    border: 5px solid white;
+    color: white;
+    padding: 10px;
+
+    height: 10;
+    text-align: center;
+    overflow-y: scroll;
+}

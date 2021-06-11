@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.new(comment: params[:comment], user_id: params[:user_id])
+        comment = Comment.new(text: params[:comment], user_id: params[:user_id])
         if comment.save
             render json: comment, include: [:user]
         else
