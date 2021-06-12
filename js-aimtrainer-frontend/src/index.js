@@ -12,9 +12,9 @@ signUpButton.addEventListener("click", (e) => {
 
 logInButton.addEventListener("click", (e) => {
     logIn(e);
+    getComments();
 })
 
-getComments();
 
 
 
@@ -161,8 +161,10 @@ function getComments() {
             let commentAuthor = e.user.username;
             let user = document.querySelector("#current-user").innerText;
             commentDeleteButton.addEventListener("click", (e) => {
-                removeComment(commentId, commentAuthor, user);
+                if(commentAuthor === user) {
+                removeComment(commentId);
                 commentsSection.removeChild(e.target.parentElement);
+                }
             });
             commentsSection.appendChild(commentDiv);
             commentDiv.appendChild(commentHeader);
@@ -174,9 +176,7 @@ function getComments() {
     })
 }
 
-function removeComment(commentId, commentAuthor, user) {
-    if(commentAuthor === user) {
+function removeComment(commentId) {
     let configObj = { method: "DELETE" };
     fetch(COMMENTS_URL + "/" + commentId, configObj);
-    }
 }
