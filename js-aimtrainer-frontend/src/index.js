@@ -153,28 +153,17 @@ function getComments() {
             let commentHeader = document.createElement("h5");
             let commentP = document.createElement("p");
             let commentDeleteButton = document.createElement('button');
-            // let deleteComment = document.createElement('button');
-            // deleteComment.classList.add("deleteButton");
-            // deleteComment.addEventListener("click", (e) => {
-            //     e.preventDefault();
-            //     let commentToDelete = document.getElementById("p").value
-            //     let formData = {
-            //         comment: commentText
-            //     }
-
-            //     let configObj = {
-            //         method: "DELETE",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             "Accept": "application/json"
-            //         },
-            //         body: JSON.stringify(formData)
-            //     }
-            // })
-            // deleteComment.innerText = "x"
+            commentDeleteButton.classList.add("deleteButton");
+            commentDeleteButton.innerText = "x"
             commentHeader.innerText = e.user.username;
             commentP.innerText = e.text;
-            commentDeleteButton.innerText = "x"
+            let commentId = e.id
+            let commentAuthor = e.user.username;
+            let user = document.querySelector("#current-user").innerText;
+            commentDeleteButton.addEventListener("click", (e) => {
+                removeComment(commentId, commentAuthor, user);
+                commentsSection.removeChild(e.target.parentElement);
+            });
             commentsSection.appendChild(commentDiv);
             commentDiv.appendChild(commentHeader);
             commentDiv.appendChild(commentP);
@@ -185,7 +174,9 @@ function getComments() {
     })
 }
 
-function removeComment(commentId) {
+function removeComment(commentId, commentAuthor, user) {
+    if(commentAuthor === user) {
     let configObj = { method: "DELETE" };
     fetch(COMMENTS_URL + "/" + commentId, configObj);
+    }
 }
