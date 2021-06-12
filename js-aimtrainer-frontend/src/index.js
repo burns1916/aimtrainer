@@ -121,12 +121,21 @@ function newComment(user_id) {
             commentDiv.classList.add("a-comment");
             let commentHeader = document.createElement("h5");
             let commentP = document.createElement("p");
+            let commentDeleteButton = document.createElement('button');
+            commentDeleteButton.classList.add("deleteButton");
+            commentDeleteButton.innerText = "x"
             commentHeader.innerText = parsedResp.user.username;
             commentP.innerText = parsedResp.text;
+            let commentId = parsedResp.id
+            commentDeleteButton.addEventListener("click", (e) => {
+                removeComment(commentId);
+                commentsSection.removeChild(e.target.parentElement);
+            });
+            let br = document.createElement("br");
             commentsSection.appendChild(commentDiv);
             commentDiv.appendChild(commentHeader);
             commentDiv.appendChild(commentP);
-            let br = document.createElement("br");
+            commentDiv.appendChild(commentDeleteButton)
             commentDiv.appendChild(br);
         });
     })
@@ -143,33 +152,40 @@ function getComments() {
             commentDiv.classList.add("a-comment");
             let commentHeader = document.createElement("h5");
             let commentP = document.createElement("p");
-            let deleteComment = document.createElement('button');
-            deleteComment.classList.add("deleteButton");
-            deleteComment.addEventListener("click", (e) => {
-                e.preventDefault();
-                let commentToDelete = document.getElementById("p").value
-                let formData = {
-                    comment: commentText
-                }
+            let commentDeleteButton = document.createElement('button');
+            // let deleteComment = document.createElement('button');
+            // deleteComment.classList.add("deleteButton");
+            // deleteComment.addEventListener("click", (e) => {
+            //     e.preventDefault();
+            //     let commentToDelete = document.getElementById("p").value
+            //     let formData = {
+            //         comment: commentText
+            //     }
 
-                let configObj = {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify(formData)
-                }
-            })
-            deleteComment.innerText = "x"
+            //     let configObj = {
+            //         method: "DELETE",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             "Accept": "application/json"
+            //         },
+            //         body: JSON.stringify(formData)
+            //     }
+            // })
+            // deleteComment.innerText = "x"
             commentHeader.innerText = e.user.username;
             commentP.innerText = e.text;
+            commentDeleteButton.innerText = "x"
             commentsSection.appendChild(commentDiv);
             commentDiv.appendChild(commentHeader);
             commentDiv.appendChild(commentP);
-            commentDiv.appendChild(deleteComment);
+            commentDiv.appendChild(commentDeleteButton);
             let br = document.createElement("br");
             commentDiv.appendChild(br);
         });
     })
+}
+
+function removeComment(commentId) {
+    let configObj = { method: "DELETE" };
+    fetch(COMMENTS_URL + "/" + commentId, configObj);
 }
