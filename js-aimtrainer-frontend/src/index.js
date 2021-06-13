@@ -12,7 +12,6 @@ signUpButton.addEventListener("click", (e) => {
 
 logInButton.addEventListener("click", (e) => {
     logIn(e);
-    getComments();
 })
 
 
@@ -78,7 +77,7 @@ function signUp(e) {
         body: JSON.stringify(formData)
     }
 
-    fetch(`${BASE_URL}/users`, configObj)
+    fetch(USERS_URL, configObj)
     .then(resp => resp.json())
     .then(parsedResp => {
         if(parsedResp.username) {
@@ -142,6 +141,7 @@ function newComment(user_id) {
 }
 
 function getComments() {
+    if (logged_in() === true) {
     fetch(`${BASE_URL}/comments`)
     .then(resp => resp.json())
     .then(parsedResp => {
@@ -174,6 +174,7 @@ function getComments() {
             commentDiv.appendChild(br);
         });
     })
+    }
 }
 
 function removeComment(commentId) {
