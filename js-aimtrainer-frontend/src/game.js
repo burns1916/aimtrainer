@@ -1,32 +1,25 @@
 let aimCanvas = new canvas('game-canvas');
 let cursor = new mouse();
 
-// Setup
 aimCanvas.setSize(800, 400);
 
-// Run it !
 run();
 
-// Global Class
 function canvas(canvasId){
 
-    // Canvas
     this.canvas = document.querySelector('#' + canvasId);
     this.ctx = this.canvas.getContext('2d');
     this.centerLeft;
     this.centerTop;
 
-    // Cursor
     this.cursorX = -50;
     this.cursorY = -50;
     this.cursorSound = [];
 
 
-    // Game Settings
     this.currentView = "menu";
     this.mode;
 
-    // Listener
     this.canvas.addEventListener('mousemove', function(e){
 
         this.boundingClientRect = this.getBoundingClientRect();
@@ -36,14 +29,11 @@ function canvas(canvasId){
     })
     this.canvas.addEventListener('mousedown', function(){
 
-        // Shoot Sound
         aimCanvas.cursorSound.push(new sound());
         aimCanvas.cursorSound[aimCanvas.cursorSound.length-1].play();
 
-        // Menu Event
         if(aimCanvas.currentView === "menu"){
 
-            // Target Mode Icon
             if(aimCanvas.cursorX > aimCanvas.centerLeft - 75
                 && aimCanvas.cursorX < aimCanvas.centerLeft + 75
                 && aimCanvas.cursorY > aimCanvas.centerTop - 50
@@ -123,8 +113,6 @@ function canvas(canvasId){
         if(this.currentView === "targetMode"){
 
             if(this.mode.life <= 0){
-
-                //console.log('loose');
 
             }
 
