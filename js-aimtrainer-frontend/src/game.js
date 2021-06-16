@@ -243,6 +243,7 @@ function targetMode(){
     }
 
 }
+
 function target(){
 
     this.x = rand(aimCanvas.mode.targetsMaxSize, aimCanvas.canvas.width - aimCanvas.mode.targetsMaxSize);
@@ -250,39 +251,37 @@ function target(){
     this.size = 0;
     this.reset = false;
 
-    const myImg = new Image();
-    myImg.src = "target.png";;
+
 
 
     this.draw = function(){
 
-        // if(this.size < aimCanvas.mode.targetsMaxSize && this.reset === false) {
 
-        //     this.size += aimCanvas.mode.targetsRapidity;
+        if(this.size < aimCanvas.mode.targetsMaxSize && this.reset === false) {
 
-        // }else{
+            this.size += aimCanvas.mode.targetsRapidity;
 
-        //     this.reset = true;
+        }else{
 
-        //     if(this.size - aimCanvas.mode.targetsRapidity < 0){
-        //         return this.size = 0;
-        //     }
+            this.reset = true;
 
-        //     this.size -= aimCanvas.mode.targetsRapidity;
+            if(this.size - aimCanvas.mode.targetsRapidity < 0){
+                return this.size = 0;
+            }
 
-        // }
+            this.size -= aimCanvas.mode.targetsRapidity;
+
+        }
+
+        const myImg = new Image();
+        myImg.src = "target.png";;
 
         // aimCanvas.ctx.fillStyle = "red";
         // aimCanvas.ctx.beginPath();
-        // aimCanvas.ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        aimCanvas.ctx.drawImage(myImg, this.x, this.y);
         // aimCanvas.ctx.closePath();
         // aimCanvas.ctx.fill();
 
-            //100% height
-            aimCanvas.ctx.drawImage(myImg,10,150);
-        
-            //10% height
-            aimCanvas.ctx.drawImage(myImg,10,10, myImg.width, (myImg.height / 100 * 50));
         }
 
 }
