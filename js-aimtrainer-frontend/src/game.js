@@ -250,33 +250,40 @@ function target(){
     this.size = 0;
     this.reset = false;
 
+    const myImg = new Image();
+    myImg.src = "target.png";;
+
+
     this.draw = function(){
 
-        if(this.size < aimCanvas.mode.targetsMaxSize && this.reset === false) {
+        // if(this.size < aimCanvas.mode.targetsMaxSize && this.reset === false) {
 
-            this.size += aimCanvas.mode.targetsRapidity;
+        //     this.size += aimCanvas.mode.targetsRapidity;
 
-        }else{
+        // }else{
 
-            this.reset = true;
+        //     this.reset = true;
 
-            if(this.size - aimCanvas.mode.targetsRapidity < 0){
-                return this.size = 0;
-            }
+        //     if(this.size - aimCanvas.mode.targetsRapidity < 0){
+        //         return this.size = 0;
+        //     }
 
-            this.size -= aimCanvas.mode.targetsRapidity;
+        //     this.size -= aimCanvas.mode.targetsRapidity;
 
+        // }
+
+        // aimCanvas.ctx.fillStyle = "red";
+        // aimCanvas.ctx.beginPath();
+        // aimCanvas.ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        // aimCanvas.ctx.closePath();
+        // aimCanvas.ctx.fill();
+
+            //100% height
+            aimCanvas.ctx.drawImage(myImg,10,150);
+        
+            //10% height
+            aimCanvas.ctx.drawImage(myImg,10,10, myImg.width, (myImg.height / 100 * 50));
         }
-
-        drawing = new Image() 
-        drawing.src = "C:\Users\ryank\OneDrive\Pictures\target.png" 
-        aimCanvas.ctx.drawImage(drawing,0,0);
-        aimCanvas.ctx.beginPath();
-        aimCanvas.ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-        aimCanvas.ctx.closePath();
-        aimCanvas.ctx.fill();
-
-    }
 
 }
 
@@ -290,7 +297,7 @@ function rand(min, max){
 function sound(){
 
     this.sound = document.createElement("audio");
-    this.sound.src = "shoot.mp3";
+    this.sound.src = "gunshot.mp3";
     this.sound.setAttribute("preload", "auto");
 
     this.play = function(){
