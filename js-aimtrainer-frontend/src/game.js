@@ -21,6 +21,7 @@ function canvas(canvasId){
     this.cursorY = -50;
     this.cursorSound = [];
 
+
     // Game Settings
     this.currentView = "menu";
     this.mode;
@@ -198,20 +199,21 @@ function mouse(){
         aimCanvas.ctx.fillRect(aimCanvas.cursorX, aimCanvas.cursorY+8, 3, 10);
         aimCanvas.ctx.fillRect(aimCanvas.cursorX - 15, aimCanvas.cursorY, 10, 3);
         aimCanvas.ctx.closePath();
+
+
     }
 
 }
 
-// Game Mode
 function targetMode(){
 
     this.life = 3;
     this.score = 0;
     this.shootFail = 0;
     this.targets = [];
-    this.targetsMaxSize = 30; // Unity : Pixel
-    this.targetsRapidity = 0.4; // Unity : Pixel
-    this.targetsTime = 500 - (this.score * 5); // Unity : Mills
+    this.targetsMaxSize = 30;
+    this.targetsRapidity = 0.4;
+    this.targetsTime = 500 - (this.score * 5);
     this.targetsLastAdd = Date.now();
 
     this.addTarget = function(){
@@ -273,21 +275,36 @@ function target(){
 
         }
 
-        const myImg = new Image();
-        myImg.src = "target.png";;
+        aimCanvas.ctx.fillStyle = "red";
+        aimCanvas.ctx.beginPath();
+        aimCanvas.ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        aimCanvas.ctx.closePath();
+        aimCanvas.ctx.fill();
 
-        // aimCanvas.ctx.fillStyle = "red";
-        // aimCanvas.ctx.beginPath();
-        aimCanvas.ctx.drawImage(myImg, this.x, this.y);
-        // aimCanvas.ctx.closePath();
-        // aimCanvas.ctx.fill();
+        aimCanvas.ctx.fillStyle = "white";
+        aimCanvas.ctx.beginPath();
+        aimCanvas.ctx.arc(this.x, this.y, this.size/1.5, 0, 2 * Math.PI);
+        aimCanvas.ctx.closePath();
+        aimCanvas.ctx.fill();
+
+        aimCanvas.ctx.fillStyle = "red";
+        aimCanvas.ctx.beginPath();
+        aimCanvas.ctx.arc(this.x, this.y, this.size/2.5, 0, 2 * Math.PI);
+        aimCanvas.ctx.closePath();
+        aimCanvas.ctx.fill();
+
+        
+        aimCanvas.ctx.fillStyle = "white";
+        aimCanvas.ctx.beginPath();
+        aimCanvas.ctx.arc(this.x, this.y, this.size/4, 0, 2 * Math.PI);
+        aimCanvas.ctx.closePath();
+        aimCanvas.ctx.fill();
 
         }
 
 }
 
 
-// Functions
 function rand(min, max){
 
     return Math.round(Math.random() * (max - min) + min);

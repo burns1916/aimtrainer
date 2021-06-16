@@ -82,3 +82,7 @@ h4 {
     height: 10;
     text-align: left;
 }
+
+canvas {
+    cursor: none;
+}
