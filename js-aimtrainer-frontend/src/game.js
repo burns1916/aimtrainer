@@ -133,7 +133,7 @@ function canvas(canvasId){
             aimCanvas.ctx.fillStyle = "#e40700";
             aimCanvas.ctx.textAlign = "center";
             aimCanvas.ctx.textBaseline = "center";
-            aimCanvas.ctx.font = "30px Open Sans";
+            aimCanvas.ctx.font = "75px Open Sans";
             aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
 
 
@@ -152,15 +152,15 @@ function canvas(canvasId){
 
             }else{
 
-                this.ctx.fillStyle = "#959595";
+                this.ctx.fillStyle = "#e40700";
                 this.ctx.textAlign = "center";
                 this.ctx.textBaseline = "center";
                 this.ctx.font = "80px Open Sans";
-                this.ctx.fillText('♥'.repeat(this.mode.life), this.centerLeft, this.centerTop);
+                this.ctx.fillText('♥'.repeat(this.mode.life), 700, 50);
 
                 aimCanvas.ctx.font = "30px Open Sans";
-                aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 30);
-                aimCanvas.ctx.fillText("Miss : " + this.mode.shootFail, this.centerLeft, this.centerTop + 70);
+                aimCanvas.ctx.fillText("Score : " + this.mode.score, 100, 50);
+                aimCanvas.ctx.fillText("Miss : " + this.mode.shootFail, 100, 75);
 
                 this.mode.getTargets();
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :high_scores
 
-  post '/login', to: 'sessions#create'
+  post '/login' => 'sessions#create'
 
-  get '/logout', to: 'sessions#destroy'
+  post 'logout' => 'sessions#destroy'
 end

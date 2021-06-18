@@ -5,6 +5,7 @@ const HIGH_SCORE_URL = `${BASE_URL}/high_scores`
 
 const signUpButton = document.getElementById("signUpButton");
 const logInButton = document.getElementById("logInButton");
+const logOutButton = document.getElementById("logOutButton")
 
 signUpButton.addEventListener("click", (e) => {
     signUp(e);
@@ -12,6 +13,10 @@ signUpButton.addEventListener("click", (e) => {
 
 logInButton.addEventListener("click", (e) => {
     logIn(e);
+})
+
+logOutButton.addEventListener("click", (e) => {
+    logOut(e);
 })
 
 
@@ -88,6 +93,32 @@ function signUp(e) {
             currentUser.innerText = parsedResp.username;
         }
     });
+}
+
+function logOut(e) {
+    e.preventDefault();
+
+    let data = {
+        username: document.querySelector("#current-user").innerText
+    }
+
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+    }
+
+    fetch(`${BASE_URL}/logout`, configObj)
+    .then(resp => resp.json())
+    .then(parsedResp => {
+        if(loggedIn() === true) {
+            let player = document.querySelector("#current-user");
+            player.innerText === "Not Logged In"
+        }
+    })
 }
 
 function newComment(user_id) {
