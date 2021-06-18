@@ -150,6 +150,39 @@ function canvas(canvasId){
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 20);
                 aimCanvas.ctx.fillText("Press ESCAPE", this.centerLeft, this.centerTop + 200);
 
+                function postHighScore(e) {
+                    e.preventDefault();
+
+                    let formData = {
+                        high_score: this.mode.score
+                        sccuracy: this.mode.score/this.mode.shootFail
+                    }
+                
+                    let configObj = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify(formData)
+                    }
+                
+                    fetch(`${BASE_URL}/high_scores`, configObj)
+                    .then(resp => resp.json())
+                    .then(parsedResp => {
+                        if(parsedResp.username) {
+                
+                            newComment(parsedResp.id);
+                
+                            const currentUser = document.querySelector("#current-user");
+                            currentUser.innerText = parsedResp.username;
+                        }
+                    });
+
+                }
+
+                postHighScore();
+
             }else{
 
                 this.ctx.fillStyle = "#e40700";
