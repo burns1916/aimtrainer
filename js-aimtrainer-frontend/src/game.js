@@ -155,7 +155,9 @@ function canvas(canvasId){
 
                     let formData = {
                         high_score: this.mode.score
-                        sccuracy: this.mode.score/this.mode.shootFail
+                        accuracy: this.mode.score/this.mode.shootFail
+                        username: document.querySelector("#current-user");
+                        userId: username.id
                     }
                 
                     let configObj = {
@@ -170,12 +172,14 @@ function canvas(canvasId){
                     fetch(`${BASE_URL}/high_scores`, configObj)
                     .then(resp => resp.json())
                     .then(parsedResp => {
-                        if(parsedResp.username) {
-                
-                            newComment(parsedResp.id);
-                
-                            const currentUser = document.querySelector("#current-user");
-                            currentUser.innerText = parsedResp.username;
+                        let highScoreSection = document.querySelector("high_scores");
+                        let highScoreDiv = createElement("div");
+                        let user = createElement("h5");
+                        let userHighScore = createElement("p")
+                        let userAccuracy = createElement("p")
+                        user.innerText = parsedResp.username;
+                        userHighScore.innerText = parsedResp.high_score;
+                        userAccuracy.innerText = parsedResp.accuracy;
                         }
                     });
 
