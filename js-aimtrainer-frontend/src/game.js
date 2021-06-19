@@ -150,13 +150,13 @@ function canvas(canvasId){
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 20);
                 aimCanvas.ctx.fillText("Press ESCAPE", this.centerLeft, this.centerTop + 200);
 
-                function postHighScore(e) {
-                    e.preventDefault();
+                function postHighScore() {
+                    let gameHighScore = this.mode.score;
 
                     let formData = {
-                        high_score: this.mode.score
-                        accuracy: this.mode.score/this.mode.shootFail
-                        username: document.querySelector("#current-user");
+                        high_score: gameHighScore,
+                        accuracy: this.mode.score/this.mode.shootFail,
+                        username: document.querySelector("#current-user"),
                         userId: username.id
                     }
                 
@@ -180,10 +180,12 @@ function canvas(canvasId){
                         user.innerText = parsedResp.username;
                         userHighScore.innerText = parsedResp.high_score;
                         userAccuracy.innerText = parsedResp.accuracy;
-                        }
-                    });
-
-                }
+                        highScoreSection.appendChild(highScoreDiv);
+                        highScoreDiv.appendChild(user);
+                        highScoreDiv.appendChild(userHighScore);
+                        highScoreDiv.appendChild(userAccuracy)
+                        })
+                    };
 
                 postHighScore();
 
