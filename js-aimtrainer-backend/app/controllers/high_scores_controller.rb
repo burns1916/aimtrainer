@@ -1,4 +1,4 @@
-class HighScoreController < ApplicationController
+class HighScoresController < ApplicationController
     
     def index
         high_scores = HighScore.all
@@ -6,7 +6,7 @@ class HighScoreController < ApplicationController
     end
 
     def create
-        high_score = HighScore.new(high_score: params[:high_score], user_id: params[:user_id])
+        high_score = HighScore.new(high_score: params[:high_score], user_id: params[:user_id], accuracy: params[:accuracy])
         if high_score.save
             render json: high_score, include: [:user]
         else
