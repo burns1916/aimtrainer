@@ -152,7 +152,7 @@ function canvas(canvasId){
 
                 let gameHighScore = this.mode.score;
                 let gameAccuracy = this.mode.score/this.mode.shootFail
-                let gameUser = document.querySelector("#current-user")
+                let gameUser = document.querySelector("#current-user").innerText
 
                 function postHighScore(gameHighScore, gameAccuracy, gameUser) {
 
@@ -174,11 +174,11 @@ function canvas(canvasId){
                     fetch(`${BASE_URL}/high_scores`, configObj)
                     .then(resp => resp.json())
                     .then(parsedResp => {
-                        let highScoreSection = document.querySelector("high_scores");
-                        let highScoreDiv = createElement("div");
-                        let user = createElement("h5");
-                        let userHighScore = createElement("p")
-                        let userAccuracy = createElement("p")
+                        let highScoreSection = document.querySelector("#high-scores");
+                        let highScoreDiv = document.createElement("div");
+                        let user = document.createElement("h5");
+                        let userHighScore = document.createElement("p")
+                        let userAccuracy = document.createElement("p")
                         user.innerText = parsedResp.username;
                         userHighScore.innerText = parsedResp.high_score;
                         userAccuracy.innerText = parsedResp.accuracy;
