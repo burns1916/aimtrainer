@@ -154,12 +154,20 @@ function canvas(canvasId){
                 let gameAccuracy = this.mode.score/this.mode.shootFail
                 let gameUser = document.querySelector("#current-user").innerText
 
-                function postHighScore(gameHighScore, gameAccuracy, gameUser) {
+                function postHighScore() {
+
+
 
                     let formData = {
                         high_score: gameHighScore,
                         accuracy: gameAccuracy,
-                        username: gameUser
+                        username: gameUser,
+                        user_id: fetch(`${BASE_URL}/users`)
+                                .then(resp => resp.json())
+                                .then(parsedResp => {
+                                const currentGameUser = parsedResp.find(( {username} ) => username === document.querySelector("#current-user").innerText)
+                                return currentGameUser.id
+                                })
                     }
                 
                     let configObj = {
@@ -171,7 +179,7 @@ function canvas(canvasId){
                         body: JSON.stringify(formData)
                     }
                 
-                    fetch(`${BASE_URL}/high_scores`, configObj)
+                    fetch(`${BASE_URL}/users/${gameUser.id}/high_scores`, configObj)
                     .then(resp => resp.json())
                     .then(parsedResp => {
                         let highScoreSection = document.querySelector("#high-scores");
@@ -187,9 +195,9 @@ function canvas(canvasId){
                         highScoreDiv.appendChild(userHighScore);
                         highScoreDiv.appendChild(userAccuracy)
                         })
-                    };
+                };
 
-                postHighScore(gameHighScore, gameAccuracy, gameUser);
+                postHighScore();
 
             }else{
 

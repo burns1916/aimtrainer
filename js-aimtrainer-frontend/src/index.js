@@ -33,6 +33,10 @@ function loggedIn() {
     }
 }
 
+const currentUserId = function(userId) {
+    return userId
+}
+
 function logIn(e) {
     e.preventDefault();
 
@@ -57,6 +61,7 @@ function logIn(e) {
         if(parsedResp.username) {
 
             newComment(parsedResp.id);
+            currentUserId(parsedResp.id);
 
             const currentUser = document.querySelector("#current-user");
             currentUser.innerText = parsedResp.username;
@@ -88,6 +93,7 @@ function signUp(e) {
         if(parsedResp.username) {
 
             newComment(parsedResp.id);
+            currentUserId(parsedResp.id)
 
             const currentUser = document.querySelector("#current-user");
             currentUser.innerText = parsedResp.username;
