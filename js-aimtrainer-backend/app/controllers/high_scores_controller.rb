@@ -6,7 +6,7 @@ class HighScoresController < ApplicationController
     end
 
     def create
-        high_score = HighScore.new(high_score: params[:high_score], user_id: params[:user_id], accuracy: params[:accuracy])
+        high_score = HighScore.new(score: params[:high_score], accuracy: params[:accuracy], user_id: params[:user_id])
         if high_score.save
             render json: high_score, include: [:user]
         else
@@ -14,14 +14,14 @@ class HighScoresController < ApplicationController
         end
     end
 
-    def update
-        high_score = HighScore.find_by_id(params[:id])
-        if high_score
-            high_score.update(high_score: params[:high_score], user_id: params[:user_id])
-            render json: high_score, include: [:user]
-        else
-            render json: high_score.errors.full_messages
-        end
-    end
+    # def update
+    #     high_score = HighScore.find_by_id(params[:id])
+    #     if high_score
+    #         high_score.update(high_score: params[:high_score], user_id: params[:user_id])
+    #         render json: high_score, include: [:user]
+    #     else
+    #         render json: high_score.errors.full_messages
+    #     end
+    # end
 
 end

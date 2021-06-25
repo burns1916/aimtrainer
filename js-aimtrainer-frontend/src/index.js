@@ -57,12 +57,17 @@ function logIn(e) {
         if(parsedResp.username) {
 
             newComment(parsedResp.id);
-            setHighScore(parsedResp.id);
+            setUserId(parsedResp.id);
 
             const currentUser = document.querySelector("#current-user");
             currentUser.innerText = parsedResp.username;
         }
     });
+}
+
+function setUserId(user_id) {
+    let hiddenUserId = document.getElementById("userId")
+    hiddenUserId.value = user_id
 }
 
 function signUp(e) {
@@ -89,7 +94,7 @@ function signUp(e) {
         if(parsedResp.username) {
 
             newComment(parsedResp.id);
-            setHighScore(parsedResp.id)
+            setUserId(parsedResp.id);
 
             const currentUser = document.querySelector("#current-user");
             currentUser.innerText = parsedResp.username;
@@ -121,13 +126,6 @@ function logOut(e) {
             player.innerText === "Not Logged In"
         }
     })
-}
-
-function setHighScore(user_id) {
-
-    fetch(`${BASE_URL}/users/${user_id}/high_scores`)
-    .then(canvas())
-
 }
 
 function newComment(user_id) {
