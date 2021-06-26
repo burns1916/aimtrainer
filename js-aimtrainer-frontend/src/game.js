@@ -76,6 +76,7 @@ function canvas(canvasId){
         }, 2000);
 
     })
+
     document.addEventListener('keydown', function(e){
 
         if(e.code === "Escape"){
@@ -150,7 +151,15 @@ function canvas(canvasId){
                 aimCanvas.ctx.font = "30px Open Sans";
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 20);
                 aimCanvas.ctx.fillText("Press ESCAPE", this.centerLeft, this.centerTop + 200);
-                aimCanvas.ctx.fillText("Push P to post High Score", this.centerLeft, this.centerTop + 200);
+
+                aimCanvas.ctx.fillStyle = "#e40700";
+                aimCanvas.ctx.textAlign = "center";
+                aimCanvas.ctx.textBaseline = "center";
+                aimCanvas.ctx.font = "75px Open Sans";
+                aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
+
+                
+            
 
                 let gameHighScore = this.mode.score;
                 let gameAccuracy = this.mode.score/this.mode.shootFail
@@ -194,7 +203,11 @@ function canvas(canvasId){
                     });
                 };
 
-                postHighScore();
+            document.addEventListener('keydown', function(e) {
+                if(e.code === "Enter") {
+                    postHighScore();
+                }
+            })
 
             }else{
 
