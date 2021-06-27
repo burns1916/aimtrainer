@@ -188,13 +188,13 @@ function canvas(canvasId){
                     .then(resp => resp.json())
                     .then(parsedResp => {
 
-                        let highScoreSection = document.querySelector("#high-scores");
+                        let highScoreSection = document.querySelector(".high-scores");
                         let highScoreDiv = document.createElement("div");
                         let user = document.createElement("h5");
                         let userHighScore = document.createElement("p")
                         let userAccuracy = document.createElement("p")
                         user.innerText = gameUser;
-                        userHighScore.innerText = parsedResp.high_score;
+                        userHighScore.innerText = parsedResp.score;
                         userAccuracy.innerText = parsedResp.accuracy;
                         highScoreSection.appendChild(highScoreDiv);
                         highScoreDiv.appendChild(user);
@@ -204,6 +204,8 @@ function canvas(canvasId){
                 };
 
             document.addEventListener('keydown', function(e) {
+                e.preventDefault();
+                
                 if(e.code === "Enter") {
                     postHighScore();
                 }
