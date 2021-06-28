@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_033928) do
+ActiveRecord::Schema.define(version: 2021_06_28_034019) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 2021_06_27_033928) do
   end
 
   create_table "high_scores", force: :cascade do |t|
-    t.integer "score"
+    t.string "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.float "accuracy"
+    t.string "accuracy"
   end
 
   create_table "users", force: :cascade do |t|

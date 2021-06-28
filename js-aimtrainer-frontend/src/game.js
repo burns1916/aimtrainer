@@ -157,6 +157,7 @@ function canvas(canvasId){
                 aimCanvas.ctx.textBaseline = "center";
                 aimCanvas.ctx.font = "75px Open Sans";
                 aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
+                postHighScore();
 
                 
             
@@ -168,6 +169,12 @@ function canvas(canvasId){
                 let parsedGameUserId = parseInt(currentGameUserId)
 
                 function postHighScore() {
+
+                    
+                document.addEventListener('keydown', function(e) {
+                    e.preventDefault();
+                
+                    if(e.code === "Enter") {
 
                     let formData = {
                         high_score: gameHighScore,
@@ -201,15 +208,9 @@ function canvas(canvasId){
                         highScoreDiv.appendChild(userHighScore);
                         highScoreDiv.appendChild(userAccuracy)
                     });
+                    };
+                });
                 };
-
-            document.addEventListener('keydown', function(e) {
-                e.preventDefault();
-                
-                if(e.code === "Enter") {
-                    postHighScore();
-                }
-            })
 
             }else{
 
