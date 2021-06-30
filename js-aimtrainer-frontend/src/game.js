@@ -20,6 +20,8 @@ function canvas(canvasId){
     this.currentView = "menu";
     this.mode;
 
+    
+
     this.canvas.addEventListener('mousemove', function(e){
 
         this.boundingClientRect = this.getBoundingClientRect();
@@ -88,6 +90,16 @@ function canvas(canvasId){
 
     })
 
+    document.addEventListener('keydown', function(e){
+
+        if(e.key === "p") {
+
+                aimCanvas.postScore();
+                aimCanvas.mode = null;
+                return aimCanvas.currentView = "menu";
+        }
+    })
+
     this.setSize = function(x, y){
 
         this.canvas.width = x;
@@ -126,6 +138,47 @@ function canvas(canvasId){
 
     }
 
+    this.postScore = function() {
+
+        let gameHighScore = this.mode.score;
+        let gameAccuracy = (this.mode.shootFail/this.mode.score) * 100
+        let gameUser = document.querySelector("#current-user").innerText
+        let currentGameUserId = document.getElementById("userId").value
+        let parsedGameUserId = parseInt(currentGameUserId)
+
+        let formData = {
+            high_score: gameHighScore,
+            accuracy: gameAccuracy
+        }
+
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+
+        fetch(`${BASE_URL}/users/${parsedGameUserId}/high_scores`, configObj)
+        .then(resp => resp.json())
+        .then(parsedResp => {
+
+            let highScoreSection = document.querySelector(".high-scores");
+            let highScoreDiv = document.createElement("div");
+            let user = document.createElement("h5");
+            let userHighScore = document.createElement("p")
+            let userAccuracy = document.createElement("p")
+            user.innerText = gameUser;
+            userHighScore.innerText = "Targets Hit: " + parsedResp.score;
+            userAccuracy.innerText = "Accuracy: " + parsedResp.accuracy + "%";
+            highScoreSection.appendChild(highScoreDiv);
+            highScoreDiv.appendChild(user);
+            highScoreDiv.appendChild(userHighScore);
+            highScoreDiv.appendChild(userAccuracy)
+        });
+    };
+
     this.view = function(type){
 
         this.clear();
@@ -157,60 +210,6 @@ function canvas(canvasId){
                 aimCanvas.ctx.textBaseline = "center";
                 aimCanvas.ctx.font = "75px Open Sans";
                 aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
-                postHighScore();
-
-                
-            
-
-                let gameHighScore = this.mode.score;
-                let gameAccuracy = this.mode.score/this.mode.shootFail
-                let gameUser = document.querySelector("#current-user").innerText
-                let currentGameUserId = document.getElementById("userId").value
-                let parsedGameUserId = parseInt(currentGameUserId)
-
-                function postHighScore() {
-
-                    
-                document.addEventListener('keydown', function(e) {
-                    e.preventDefault();
-                
-                    if(e.code === "Enter") {
-
-                    let formData = {
-                        high_score: gameHighScore,
-                        accuracy: gameAccuracy,
-                        user_id: parsedGameUserId
-                    }
-            
-                    let configObj = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        },
-                        body: JSON.stringify(formData)
-                    }
-
-                    fetch(`${BASE_URL}/users/${parsedGameUserId}/high_scores`, configObj)
-                    .then(resp => resp.json())
-                    .then(parsedResp => {
-
-                        let highScoreSection = document.querySelector(".high-scores");
-                        let highScoreDiv = document.createElement("div");
-                        let user = document.createElement("h5");
-                        let userHighScore = document.createElement("p")
-                        let userAccuracy = document.createElement("p")
-                        user.innerText = gameUser;
-                        userHighScore.innerText = parsedResp.score;
-                        userAccuracy.innerText = parsedResp.accuracy;
-                        highScoreSection.appendChild(highScoreDiv);
-                        highScoreDiv.appendChild(user);
-                        highScoreDiv.appendChild(userHighScore);
-                        highScoreDiv.appendChild(userAccuracy)
-                    });
-                    };
-                });
-                };
 
             }else{
 
