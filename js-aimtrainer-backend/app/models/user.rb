@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :comments
-    has_many :high_scores
+    has_one :high_score
     validates :username, presence: true
     validates :username, uniqueness: true
 end

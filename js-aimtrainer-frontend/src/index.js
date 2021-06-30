@@ -10,7 +10,7 @@ const logOutButton = document.getElementById("logOutButton")
 signUpButton.addEventListener("click", (e) => {
     signUp(e);
     getComments();
-    getHighScore();
+    getHighScores();
 })
 
 logInButton.addEventListener("click", (e) => {
@@ -106,30 +106,9 @@ function signUp(e) {
     });
 }
 
-function logOut(e) {
-    e.preventDefault();
+function logOut() {
 
-    let data = {
-        username: document.querySelector("#current-user").innerText
-    }
-
-    let configObj = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(data)
-    }
-
-    fetch(`${BASE_URL}/logout`, configObj)
-    .then(resp => resp.json())
-    .then(parsedResp => {
-        if(loggedIn() === true) {
-            let player = document.querySelector("#current-user");
-            player.innerText === "Not Logged In"
-        }
-    })
+    fetch(`${BASE_URL}/logout`)
 }
 
 function newComment(user_id) {
@@ -221,6 +200,7 @@ function getHighScores() {
     fetch(HIGH_SCORES_URL)
     .then(resp => resp.json())
     .then(parsedResp => {
+        parsedResp.sort((a,b) => b.score - a.score )
         parsedResp.forEach(e => {
             let highScoreSection = document.querySelector(".high-scores");
             let highScoreDiv = document.createElement("div");

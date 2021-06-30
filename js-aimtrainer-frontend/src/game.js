@@ -169,9 +169,10 @@ function canvas(canvasId){
             let user = document.createElement("h5");
             let userHighScore = document.createElement("p")
             let userAccuracy = document.createElement("p")
+            let roundedAccuracy = parsedResp.accuracy.toFixed(2);
             user.innerText = gameUser;
             userHighScore.innerText = "Targets Hit: " + parsedResp.score;
-            userAccuracy.innerText = "Accuracy: " + parsedResp.accuracy + "%";
+            userAccuracy.innerText = "Accuracy: " + roundedAccuracy + "%";
             highScoreSection.appendChild(highScoreDiv);
             highScoreDiv.appendChild(user);
             highScoreDiv.appendChild(userHighScore);
@@ -196,24 +197,20 @@ function canvas(canvasId){
 
             if(this.mode.life === 0){
 
-                aimCanvas.ctx.fillStyle = "#404040";
+                aimCanvas.ctx.fillStyle = "#FFFFFF";
                 aimCanvas.ctx.textAlign = "center";
                 aimCanvas.ctx.textBaseline = "center";
                 aimCanvas.ctx.font = "50px Open Sans";
                 aimCanvas.ctx.fillText("End", this.centerLeft, this.centerTop - 20);
                 aimCanvas.ctx.font = "30px Open Sans";
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 20);
-                aimCanvas.ctx.fillText("Press ESCAPE", this.centerLeft, this.centerTop + 200);
+                aimCanvas.ctx.fillText("Press P To Post High Score", this.centerLeft, this.centerTop + 100)
+                aimCanvas.ctx.fillText("Press ESCAPE To Exit", this.centerLeft, this.centerTop + 200);
 
-                aimCanvas.ctx.fillStyle = "#e40700";
-                aimCanvas.ctx.textAlign = "center";
-                aimCanvas.ctx.textBaseline = "center";
-                aimCanvas.ctx.font = "75px Open Sans";
-                aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
 
             }else{
 
-                this.ctx.fillStyle = "#e40700";
+                this.ctx.fillStyle = "#FFFFFF";
                 this.ctx.textAlign = "center";
                 this.ctx.textBaseline = "center";
                 this.ctx.font = "80px Open Sans";
