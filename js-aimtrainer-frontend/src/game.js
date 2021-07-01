@@ -190,14 +190,14 @@ function canvas(canvasId){
             aimCanvas.ctx.textAlign = "center";
             aimCanvas.ctx.textBaseline = "center";
             aimCanvas.ctx.font = "75px Open Sans";
-            aimCanvas.ctx.fillText("Start", this.centerLeft, this.centerTop + 40);
+            aimCanvas.ctx.fillText("Start", this.centerLeft - 25, this.centerTop + 40);
 
 
         }else if(type === "targetMode"){
 
             if(this.mode.life === 0){
 
-                aimCanvas.ctx.fillStyle = "#FFFFFF";
+                aimCanvas.ctx.fillStyle = "#000000";
                 aimCanvas.ctx.textAlign = "center";
                 aimCanvas.ctx.textBaseline = "center";
                 aimCanvas.ctx.font = "50px Open Sans";
@@ -210,7 +210,7 @@ function canvas(canvasId){
 
             }else{
 
-                this.ctx.fillStyle = "#FFFFFF";
+                this.ctx.fillStyle = "#000000";
                 this.ctx.textAlign = "center";
                 this.ctx.textBaseline = "center";
                 this.ctx.font = "80px Open Sans";

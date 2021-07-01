@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 signUpButton.addEventListener("click", (e) => {
     signUp(e);
-
 })
 
 logInButton.addEventListener("click", (e) => {
@@ -159,9 +158,9 @@ function newComment(user_id) {
             });
             let br = document.createElement("br");
             commentsSection.appendChild(commentDiv);
+            commentDiv.appendChild(commentDeleteButton)
             commentDiv.appendChild(commentHeader);
             commentDiv.appendChild(commentP);
-            commentDiv.appendChild(commentDeleteButton)
             commentDiv.appendChild(br);
         });
     })
@@ -178,11 +177,13 @@ function getComments() {
             commentDiv.classList.add("a-comment");
             let commentHeader = document.createElement("h5");
             let commentP = document.createElement("p");
+            let commentCreated = document.createElement("p");
             let commentDeleteButton = document.createElement('button');
             commentDeleteButton.classList.add("deleteButton");
             commentDeleteButton.innerText = "x"
             commentHeader.innerText = e.user.username + " said:";
             commentP.innerText = e.text;
+            commentCreated.innerText = Date.parse(e.created_at);
             let commentId = e.id
             let commentAuthor = e.user.username;
             commentDeleteButton.addEventListener("click", (e) => {
@@ -193,9 +194,10 @@ function getComments() {
                 }
             });
             commentsSection.appendChild(commentDiv);
-            commentDiv.appendChild(commentHeader);
-            commentDiv.appendChild(commentP);
             commentDiv.appendChild(commentDeleteButton);
+            commentDiv.appendChild(commentHeader);
+            commentDiv.appendChild(commentCreated);
+            commentDiv.appendChild(commentP);
             let br = document.createElement("br");
             commentDiv.appendChild(br);
         });
