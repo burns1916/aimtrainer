@@ -152,7 +152,7 @@ function canvas(canvasId){
         }
 
         let configObj = {
-            method: "POST",
+            method: "POSt",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"

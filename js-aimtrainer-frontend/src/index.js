@@ -7,16 +7,18 @@ const signUpButton = document.getElementById("signUpButton");
 const logInButton = document.getElementById("logInButton");
 const logOutButton = document.getElementById("logOutButton")
 
-signUpButton.addEventListener("click", (e) => {
-    signUp(e);
+document.addEventListener("DOMContentLoaded", () => {
     getComments();
     getHighScores();
 })
 
+signUpButton.addEventListener("click", (e) => {
+    signUp(e);
+
+})
+
 logInButton.addEventListener("click", (e) => {
     logIn(e);
-    getComments();
-    getHighScores();
 })
 
 logOutButton.addEventListener("click", (e) => {
@@ -147,9 +149,13 @@ function newComment(user_id) {
             commentHeader.innerText = parsedResp.user.username + " said:";
             commentP.innerText = parsedResp.text;
             let commentId = parsedResp.id
+            let commentAuthor = parsedResp.user.username;
             commentDeleteButton.addEventListener("click", (e) => {
+                let user = document.querySelector("#current-user").innerText;
+                if(commentAuthor === user) {
                 removeComment(commentId);
                 commentsSection.removeChild(e.target.parentElement);
+                }
             });
             let br = document.createElement("br");
             commentsSection.appendChild(commentDiv);
@@ -179,8 +185,8 @@ function getComments() {
             commentP.innerText = e.text;
             let commentId = e.id
             let commentAuthor = e.user.username;
-            let user = document.querySelector("#current-user").innerText;
             commentDeleteButton.addEventListener("click", (e) => {
+                let user = document.querySelector("#current-user").innerText;
                 if(commentAuthor === user) {
                 removeComment(commentId);
                 commentsSection.removeChild(e.target.parentElement);
@@ -222,5 +228,5 @@ function getHighScores() {
 
 function removeComment(commentId) {
     let configObj = { method: "DELETE" };
-    fetch(COMMENTS_URL + "/" + commentId, configObj);
+    fetch(`${BASE_URL}/comments/${commentId}`, configObj);
 }
