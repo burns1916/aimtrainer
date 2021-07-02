@@ -92,9 +92,47 @@ canvas {
 }
 
 p {
-    color :#000000
+    color :#000000;
+    font-family: "OCR A Std", monospace;
 }
 
 h5{
-    color: #000000
+    color: #000000;
+    font-family: "OCR A Std", monospace;
+}
+
+#loggedInUser {
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    color: #000000;
+    margin: 15px;
+}
+
+#login {
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    color: #000000;
+    margin: 15px;
+}
+
+#signup {
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    color: #000000;
+    margin: 15px;
+}
+
+.high-scores {
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    color: #000000;
+    margin: 15px;
 }

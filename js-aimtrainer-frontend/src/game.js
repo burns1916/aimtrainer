@@ -189,7 +189,7 @@ function canvas(canvasId){
             aimCanvas.ctx.fillStyle = "#e40700";
             aimCanvas.ctx.textAlign = "center";
             aimCanvas.ctx.textBaseline = "center";
-            aimCanvas.ctx.font = "75px Open Sans";
+            aimCanvas.ctx.font = "50px OCR A Stdm, monospace";
             aimCanvas.ctx.fillText("Start", this.centerLeft - 25, this.centerTop + 40);
 
 
