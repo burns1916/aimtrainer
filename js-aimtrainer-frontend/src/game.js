@@ -197,13 +197,15 @@ function canvas(canvasId){
 
             if(this.mode.life === 0){
 
+                let gameAccuracy = (this.mode.shootFail/this.mode.score) * 100
                 aimCanvas.ctx.fillStyle = "#000000";
                 aimCanvas.ctx.textAlign = "center";
                 aimCanvas.ctx.textBaseline = "center";
-                aimCanvas.ctx.font = "50px Open Sans";
+                aimCanvas.ctx.font = "50px OCR A Stdm, monospace";
                 aimCanvas.ctx.fillText("End", this.centerLeft, this.centerTop - 20);
-                aimCanvas.ctx.font = "30px Open Sans";
+                aimCanvas.ctx.font = "30px OCR A Stdm, monospace";
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, this.centerLeft, this.centerTop + 20);
+                aimCanvas.ctx.fillText("Accuracy : " + gameAccuracy.toFixed(2) + "%", this.centerLeft, this.centerTop + 45);
                 aimCanvas.ctx.fillText("Press P To Post High Score", this.centerLeft, this.centerTop + 100)
                 aimCanvas.ctx.fillText("Press ESCAPE To Exit", this.centerLeft, this.centerTop + 200);
 
@@ -213,10 +215,10 @@ function canvas(canvasId){
                 this.ctx.fillStyle = "#000000";
                 this.ctx.textAlign = "center";
                 this.ctx.textBaseline = "center";
-                this.ctx.font = "80px Open Sans";
+                this.ctx.font = "50px OCR A Stdm, monospace";
                 this.ctx.fillText('♥'.repeat(this.mode.life), 700, 50);
 
-                aimCanvas.ctx.font = "30px Open Sans";
+                aimCanvas.ctx.font = "30px OCR A Stdm, monospace";
                 aimCanvas.ctx.fillText("Score : " + this.mode.score, 100, 50);
                 aimCanvas.ctx.fillText("Miss : " + this.mode.shootFail, 100, 75);
 
