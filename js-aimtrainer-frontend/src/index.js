@@ -142,11 +142,14 @@ function newComment(user_id) {
             commentDiv.classList.add("a-comment");
             let commentHeader = document.createElement("h5");
             let commentP = document.createElement("p");
+            let commentCreated = document.createElement("p");
             let commentDeleteButton = document.createElement('button');
             commentDeleteButton.classList.add("deleteButton");
             commentDeleteButton.innerText = "x"
             commentHeader.innerText = parsedResp.user.username + " said:";
             commentP.innerText = parsedResp.text;
+            let createDate = new Date(parsedResp.created_at)
+            commentCreated.innerText = createDate;
             let commentId = parsedResp.id
             let commentAuthor = parsedResp.user.username;
             commentDeleteButton.addEventListener("click", (e) => {
@@ -183,7 +186,8 @@ function getComments() {
             commentDeleteButton.innerText = "x"
             commentHeader.innerText = e.user.username + " said:";
             commentP.innerText = e.text;
-            commentCreated.innerText = Date.parse(e.created_at);
+            let createDate = new Date(e.created_at)
+            commentCreated.innerText = createDate;
             let commentId = e.id
             let commentAuthor = e.user.username;
             commentDeleteButton.addEventListener("click", (e) => {
@@ -212,7 +216,7 @@ function getHighScores() {
         parsedResp.forEach(e => {
             let highScoreSection = document.querySelector(".high-scores");
             let highScoreDiv = document.createElement("div");
-            let user = document.createElement("h5");
+            let user = document.createElement("h4");
             let userHighScore = document.createElement("p")
             let userAccuracy = document.createElement("p")
             let accuracyRounded = e.accuracy.toFixed(2)
