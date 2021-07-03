@@ -141,7 +141,7 @@ function canvas(canvasId){
     this.postScore = function() {
 
         let gameHighScore = this.mode.score;
-        let gameAccuracy = (this.mode.shootFail/this.mode.score) * 100
+        let gameAccuracy = (this.mode.score/(this.mode.score + this.mode.shootFail)) * 100
         let gameUser = document.querySelector("#current-user").innerText
         let currentGameUserId = document.getElementById("userId").value
         let parsedGameUserId = parseInt(currentGameUserId)
@@ -186,18 +186,18 @@ function canvas(canvasId){
 
         if(type === "menu"){
 
-            aimCanvas.ctx.fillStyle = "#e40700";
+            aimCanvas.ctx.fillStyle = "#000000";
             aimCanvas.ctx.textAlign = "center";
             aimCanvas.ctx.textBaseline = "center";
             aimCanvas.ctx.font = "50px OCR A Stdm, monospace";
-            aimCanvas.ctx.fillText("Start", this.centerLeft - 25, this.centerTop + 40);
+            aimCanvas.ctx.fillText("Start", this.centerLeft - 5, this.centerTop + 40);
 
 
         }else if(type === "targetMode"){
 
             if(this.mode.life === 0){
 
-                let gameAccuracy = (this.mode.shootFail/this.mode.score) * 100
+                let gameAccuracy = (this.mode.score/(this.mode.score + this.mode.shootFail)) * 100
                 aimCanvas.ctx.fillStyle = "#000000";
                 aimCanvas.ctx.textAlign = "center";
                 aimCanvas.ctx.textBaseline = "center";
