@@ -6,6 +6,8 @@ const HIGH_SCORES_URL = `${BASE_URL}/high_scores`
 const signUpButton = document.getElementById("signUpButton");
 const logInButton = document.getElementById("logInButton");
 const logOutButton = document.getElementById("logOutButton")
+const darkModeButton = document.getElementById("dark-mode");
+
 
 document.addEventListener("DOMContentLoaded", () => {
     getComments();
@@ -23,6 +25,23 @@ logInButton.addEventListener("click", (e) => {
 logOutButton.addEventListener("click", (e) => {
     logOut(e);
 })
+
+darkModeButton.addEventListener("click", (e) => {
+    darkMode(e);
+})
+
+function darkMode(e) {
+    e.preventDefault();
+    
+    
+    document.body.style.backgroundColor = "black";
+    let titleElement = document.querySelector("div#title")
+    titleElement.style.backgroundColor = "black";
+    titleElement.style.color = "white";
+
+
+
+}
 
 
 
