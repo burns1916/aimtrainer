@@ -38,8 +38,7 @@ function darkMode(e) {
     let titleElement = document.querySelector("div#title")
     titleElement.style.backgroundColor = "black";
     titleElement.style.color = "white";
-
-
+    
 
 }
 
